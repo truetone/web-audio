@@ -40,9 +40,9 @@ const melody = [
     "C4",
     "E4",
     "F4",
-    "C#4/Db4",
     "G3",
-    "C4"
+    "C4",
+    "G3"
 ];
 
 const melody2 = [
@@ -66,15 +66,17 @@ let i, j, k, l;
 
 Array.prototype.forEach.call(playButtons, function(button) {
     button.onclick = function(e) {
-        console.log(sineTone1);
-
         if (!sineTone1.connected) {
             console.log("Connecting...");
 
-            window.setInterval(playMelody1, 3000)
-            window.setInterval(playMelody2, 3250)
-            window.setInterval(playMelody3, 3500)
-            window.setInterval(playMelody4, 3600)
+            window.setInterval(playMelody1, 5000)
+            window.setInterval(playMelody2, 5250)
+            window.setInterval(playMelody3, 5500)
+            window.setInterval(playMelody4, 5600)
+            triangleTone1.play("C4");
+            triangleTone2.play("C4");
+            sineTone1.play("C4");
+            sineTone2.play("C4");
             sineTone1.connect();
             sineTone2.connect();
             triangleTone1.connect();
