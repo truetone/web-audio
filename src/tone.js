@@ -2,10 +2,12 @@ const helpers = require("./helpers.js");
 
 
 class Tone {
-    constructor(signalChain, type) {
+    constructor(signalChain, type, gain) {
         const self = this;
-        this.oscillator = signalChain.createOscillator();
+        this.signalChain = signalChain;
+        this.oscillator = this.signalChain.createOscillator();
         this.oscillator.type = type;
+        this.oscillator.connect(gain);
         this.oscillator.start();
         this.defaultFrequency = 261.33;
         this.lowestFrequency = 16.35;
@@ -14,13 +16,17 @@ class Tone {
         });
 
         this.connected = false;
-        this.gain;
+        this.gain = gain;
     }
 
-    connect(gain) {
-        this.gain = gain;
+    connect() {
         this.connected = true;
-        this.oscillator.connect(gain);
+
+        // connect the oscillator to the gain node
+        this.oscillator.connect(this.gain);
+
+        // connect the gain node to the destination
+        this.gain.connect(this.signalChain.destination);
     }
 
     disconnect() {
@@ -33,10 +39,10 @@ class Tone {
     }
 
     toggle() {
-        if (!this.connected) {
-            this.connect(this.gain);
-        } else {
+        if (this.connected) {
             this.disconnect();
+        } else {
+            this.connect();
         }
     }
 
