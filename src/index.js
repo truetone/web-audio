@@ -33,8 +33,8 @@ const playButtons = document.getElementsByClassName("play-button");
 
 sineTone1Gain.gain.value = .1;
 sineTone2Gain.gain.value = .1;
-triangleTone1Gain.gain.value = .1;
-triangleTone2Gain.gain.value = .1;
+triangleTone1Gain.gain.value = .04;
+triangleTone2Gain.gain.value = .04;
 
 const melody = [
     "C4",
