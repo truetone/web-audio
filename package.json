@@ -1,0 +1,21 @@
+{
+  "name": "web-audio",
+  "version": "0.0.0",
+  "description": "Web audio experiment.",
+  "main": "lib/index.js",
+  "dependencies": {},
+  "repository": "truetone/web-audio",
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "*.md",
+    "LICENSE",
+    "lib",
+    "src"
+  ],
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}
