@@ -39,8 +39,13 @@ class Tone {
     }
 
     play(note) {
-        this.oscillator.frequency.value = this.notes[note];
-        console.log("Playing ", this.notes[note]);
+        if (typeof note === "undefined") {
+            console.warn("Got undefined note")
+            console.log(this.notes);
+        } else {
+            console.log("Playing ", this.notes[note]);
+            this.oscillator.frequency.value = this.notes[note];
+        }
     }
 
     toggle() {
