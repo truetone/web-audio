@@ -70,13 +70,13 @@ Array.prototype.forEach.call(playButtons, function(button) {
             console.log("Connecting...");
 
             window.setInterval(playMelody1, 5000)
-            window.setInterval(playMelody2, 5250)
-            window.setInterval(playMelody3, 5500)
-            window.setInterval(playMelody4, 5600)
-            triangleTone1.play("C4");
-            triangleTone2.play("C4");
-            sineTone1.play("C4");
-            sineTone2.play("C4");
+            window.setInterval(playMelody2, 5200)
+            window.setInterval(playMelody3, 5300)
+            window.setInterval(playMelody4, 5400)
+            triangleTone1.playNote("C4");
+            triangleTone2.playNote("C4");
+            sineTone1.playNote("C4");
+            sineTone2.playNote("C4");
             sineTone1.connect();
             sineTone2.connect();
             triangleTone1.connect();
@@ -97,7 +97,7 @@ playMelody1 = function() {
         i = 0;
     }
 
-    sineTone1.play(melody[i]);
+    sineTone1.playNote(melody[i]);
     i++;
 
     if (i > (melody.length - 1)) {
@@ -110,8 +110,8 @@ playMelody2 = function() {
         j = 0;
     }
 
-    // sineTone2.play(melody2[j]);
-    sineTone2.play(melody[j]);
+    // sineTone2.playNote(melody2[j]);
+    sineTone2.playNote(melody[j]);
     j++;
 
     // if (j > melody2.length - 1) {
@@ -125,8 +125,8 @@ playMelody3 = function() {
         k = 0;
     }
 
-    // triangleTone1.play(melody3[k]);
-    triangleTone1.play(melody[k]);
+    // triangleTone1.playNote(melody3[k]);
+    triangleTone1.playNote(melody[k]);
     k++;
 
     // if (k > melody3.length - 1) {
@@ -140,8 +140,8 @@ playMelody4 = function() {
         l = 0;
     }
 
-    // triangleTone1.play(melody3[k]);
-    triangleTone2.play(melody[l]);
+    // triangleTone1.playNote(melody3[k]);
+    triangleTone2.playNote(melody[l]);
     l++;
 
     // if (k > melody3.length - 1) {

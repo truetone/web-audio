@@ -1,0 +1,28 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "normalize";
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Francois+One');
+
+body {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.row {
+    @include grid-container;
+
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+@for $i from 1 through 6 {
+    h#{ $i } {
+        font-family: 'Francois One', sans-serif;
+    }
+}
+
+@for $i from 1 through 12 {
+    .span-#{ $i } {
+        @include grid-column($i)
+    }
+}

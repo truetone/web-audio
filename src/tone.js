@@ -18,6 +18,8 @@ class Tone {
         });
 
         this.connected = false;
+        // this.melody;
+        this.melodyIndex;
     }
 
     connect() {
@@ -38,7 +40,7 @@ class Tone {
         this.oscillator.disconnect();
     }
 
-    play(note) {
+    playNote(note) {
         if (typeof note === "undefined") {
             console.warn("Got undefined note")
             console.log(this.notes);
