@@ -256,7 +256,7 @@ class Tone {
         this.oscillator.start();
         this.defaultFrequency = 261.33;
         this.lowestFrequency = 16.35;
-        helpers.loadJSON("/dist/notes.json", function(data) {
+        helpers.loadJSON("dist/notes.json", function(data) {
             self.notes = JSON.parse(data);
         });
 
