@@ -91,6 +91,15 @@ Array.prototype.forEach.call(playButtons, function(button) {
     };
 });
 
+changeElementNote = function(id, idx) {
+    // set the corresponding css class for the note
+    console.log(id, idx);
+    console.log(document.getElementById("note-" + (idx - 1)));
+
+    document.getElementById(id).classList.remove("note-1", "note-2", "note-3", "note-4", "note-5");
+    document.getElementById(id).classList.add("note-" + idx);
+};
+
 playMelody1 = function() {
 
     if (!i) {
@@ -98,6 +107,9 @@ playMelody1 = function() {
     }
 
     sineTone1.playNote(melody[i]);
+
+    changeElementNote("tone-box-1", i);
+
     i++;
 
     if (i > (melody.length - 1)) {
@@ -112,6 +124,7 @@ playMelody2 = function() {
 
     // sineTone2.playNote(melody2[j]);
     sineTone2.playNote(melody[j]);
+    changeElementNote("tone-box-2", i);
     j++;
 
     // if (j > melody2.length - 1) {
@@ -127,6 +140,7 @@ playMelody3 = function() {
 
     // triangleTone1.playNote(melody3[k]);
     triangleTone1.playNote(melody[k]);
+    changeElementNote("tone-box-3", i);
     k++;
 
     // if (k > melody3.length - 1) {
@@ -142,6 +156,7 @@ playMelody4 = function() {
 
     // triangleTone1.playNote(melody3[k]);
     triangleTone2.playNote(melody[l]);
+    changeElementNote("tone-box-4", i);
     l++;
 
     // if (k > melody3.length - 1) {

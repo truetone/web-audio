@@ -390,6 +390,8 @@ template {
 [hidden] {
   display: none; }
 
+/* Coolors Exported Palette - coolors.co/6f1d1b-bb9457-432818-99582a-ffe6a7 */
+/* RGB */
 body {
   font-family: 'Didact Gothic', sans-serif; }
 
@@ -401,6 +403,10 @@ body {
     clear: both;
     content: "";
     display: block; }
+  .row.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
 
 h1 {
   font-family: 'Francois One', sans-serif; }
@@ -479,5 +485,75 @@ h6 {
   width: calc(100% - 40px);
   float: left;
   margin-left: 20px; }
+
+.tone-box {
+  flex: 1;
+  min-height: 200px;
+  transition: .3s background-color; }
+
+#tone-box-1 {
+  background-color: #6f1d1b; }
+  #tone-box-1.tone-box.note-1 {
+    background-color: #5c6f1b; }
+  #tone-box-1.tone-box.note-2 {
+    background-color: #6abb57; }
+  #tone-box-1.tone-box.note-3 {
+    background-color: #2a4318; }
+  #tone-box-1.tone-box.note-4 {
+    background-color: #55992a; }
+  #tone-box-1.tone-box.note-5 {
+    background-color: #aeffa7; }
+
+#tone-box-2 {
+  background-color: #bb9457; }
+  #tone-box-2.tone-box.note-1 {
+    background-color: #5c6f1b; }
+  #tone-box-2.tone-box.note-2 {
+    background-color: #6abb57; }
+  #tone-box-2.tone-box.note-3 {
+    background-color: #2a4318; }
+  #tone-box-2.tone-box.note-4 {
+    background-color: #55992a; }
+  #tone-box-2.tone-box.note-5 {
+    background-color: #aeffa7; }
+
+#tone-box-3 {
+  background-color: #432818; }
+  #tone-box-3.tone-box.note-1 {
+    background-color: #5c6f1b; }
+  #tone-box-3.tone-box.note-2 {
+    background-color: #6abb57; }
+  #tone-box-3.tone-box.note-3 {
+    background-color: #2a4318; }
+  #tone-box-3.tone-box.note-4 {
+    background-color: #55992a; }
+  #tone-box-3.tone-box.note-5 {
+    background-color: #aeffa7; }
+
+#tone-box-4 {
+  background-color: #99582a; }
+  #tone-box-4.tone-box.note-1 {
+    background-color: #5c6f1b; }
+  #tone-box-4.tone-box.note-2 {
+    background-color: #6abb57; }
+  #tone-box-4.tone-box.note-3 {
+    background-color: #2a4318; }
+  #tone-box-4.tone-box.note-4 {
+    background-color: #55992a; }
+  #tone-box-4.tone-box.note-5 {
+    background-color: #aeffa7; }
+
+#tone-box-5 {
+  background-color: #ffe6a7; }
+  #tone-box-5.tone-box.note-1 {
+    background-color: #5c6f1b; }
+  #tone-box-5.tone-box.note-2 {
+    background-color: #6abb57; }
+  #tone-box-5.tone-box.note-3 {
+    background-color: #2a4318; }
+  #tone-box-5.tone-box.note-4 {
+    background-color: #55992a; }
+  #tone-box-5.tone-box.note-5 {
+    background-color: #aeffa7; }
 
 /*# sourceMappingURL=styles.css.map */
