@@ -1,6 +1,7 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 @import "normalize";
+@import "pallette";
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Francois+One');
 
 body {
@@ -13,6 +14,12 @@ body {
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 20px;
+
+    &.flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }
 
 @for $i from 1 through 6 {
@@ -24,5 +31,25 @@ body {
 @for $i from 1 through 12 {
     .span-#{ $i } {
         @include grid-column($i)
+    }
+}
+
+.tone-box {
+    flex: 1;
+    min-height: 200px;
+    transition: .3s background-color;
+}
+
+@for $i from 1 through length($colors) {
+    #tone-box-#{ $i } {
+        background-color: nth($colors, $i);
+
+        @for $j from 1 through length($colors) {
+            &.tone-box {
+                &.note-#{ $j } {
+                    background-color: adjust-hue(nth($colors, $j), 72deg);
+                }
+            }
+        }
     }
 }
