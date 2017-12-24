@@ -46,11 +46,12 @@ const melody = [
 ];
 
 const melody2 = [
-    "E3",
-    "C3",
-    "G2",
-    "F3",
-    "C3"
+    "F4",
+    "B4",
+    "C4",
+    "D3",
+    "F4",
+    "D2"
 ];
 
 const melody3 = [
