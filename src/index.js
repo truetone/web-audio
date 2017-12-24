@@ -105,11 +105,11 @@ helpers.loadJSON("../dist/notes.json", function(data) {
 
         if (!sineTone1.connected) {
             console.log("Connecting...");
-            window.setInterval(playMelody1, 3000);
-            window.setInterval(playMelody3, 6000);
-            window.setInterval(playMelody4, 9000);
-            window.setInterval(playMelody2, 4500);
-            window.setInterval(playMelody5, 3000);
+            window.setInterval(playMelody1, 5000);
+            window.setInterval(playMelody3, 5100);
+            window.setInterval(playMelody4, 5300);
+            window.setInterval(playMelody2, 5400);
+            window.setInterval(playMelody5, 2500);
             triangleTone1.playNote("C2");
             triangleTone2.playNote("C2");
             sineTone1.playNote("C2");
