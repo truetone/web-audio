@@ -1,8 +1,5 @@
-const helpers = require("./helpers.js");
-
-
 class Tone {
-    constructor(signalChain, type, gain, panner) {
+    constructor(signalChain, type, gain, panner, notes) {
         const self = this;
         this.gain = gain;
         this.panner = panner;
@@ -13,12 +10,8 @@ class Tone {
         this.oscillator.start();
         this.defaultFrequency = 261.33;
         this.lowestFrequency = 16.35;
-        helpers.loadJSON("dist/notes.json", function(data) {
-            self.notes = JSON.parse(data);
-        });
-
+        this.notes = notes;
         this.connected = false;
-        // this.melody;
         this.melodyIndex;
     }
 
@@ -43,7 +36,6 @@ class Tone {
     playNote(note) {
         if (typeof note === "undefined") {
             console.warn("Got undefined note")
-            console.log(this.notes);
         } else {
             console.log("Playing ", this.notes[note]);
             this.oscillator.frequency.value = this.notes[note];
