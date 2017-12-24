@@ -40,16 +40,20 @@ body {
     transition: .3s background-color;
 }
 
-@for $i from 1 through length($colors) {
-    #tone-box-#{ $i } {
-        background-color: nth($colors, $i);
+.note-0 {
+    background-color: $prune;
+}
 
-        @for $j from 1 through length($colors) {
-            &.tone-box {
-                &.note-#{ $j } {
-                    background-color: adjust-hue(nth($colors, $j), 72deg);
-                }
-            }
-        }
+$adjusted: 0;
+
+@for $j from 1 through 6 {
+    @if $adjusted == 0 {
+        $adjusted: adjust-hue($prune, 60deg);
+    } @else {
+        $adjusted: adjust-hue($adjusted, 45deg);
+    }
+
+    .note-#{ $j } {
+        background-color: $adjusted;
     }
 }

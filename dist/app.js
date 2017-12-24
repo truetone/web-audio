@@ -162,11 +162,11 @@ Array.prototype.forEach.call(playButtons, function(button) {
 
 changeElementNote = function(id, idx) {
     // set the corresponding css class for the note
-    console.log(id, idx);
-    console.log(document.getElementById("note-" + (idx - 1)));
-
-    document.getElementById(id).classList.remove("note-1", "note-2", "note-3", "note-4", "note-5");
-    document.getElementById(id).classList.add("note-" + idx);
+    const element = document.getElementById(id);
+    element.classList.remove("note-0", "note-6", "note-1", "note-2", "note-3", "note-4", "note-5");
+    element.classList.add("note-" + idx);
+    console.log(idx);
+    element.textContent = "Note: " + melody[idx];
 };
 
 playMelody1 = function() {
@@ -193,7 +193,7 @@ playMelody2 = function() {
 
     // sineTone2.playNote(melody2[j]);
     sineTone2.playNote(melody[j]);
-    changeElementNote("tone-box-2", i);
+    changeElementNote("tone-box-2", j);
     j++;
 
     // if (j > melody2.length - 1) {
@@ -209,7 +209,7 @@ playMelody3 = function() {
 
     // triangleTone1.playNote(melody3[k]);
     triangleTone1.playNote(melody[k]);
-    changeElementNote("tone-box-3", i);
+    changeElementNote("tone-box-3", k);
     k++;
 
     // if (k > melody3.length - 1) {
@@ -225,7 +225,7 @@ playMelody4 = function() {
 
     // triangleTone1.playNote(melody3[k]);
     triangleTone2.playNote(melody[l]);
-    changeElementNote("tone-box-4", i);
+    changeElementNote("tone-box-4", l);
     l++;
 
     // if (k > melody3.length - 1) {
