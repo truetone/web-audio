@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Web Audio</title>
+  <title>Web Audio Experiments</title>
   <meta name="description" content="Web Audio Experiment">
   <meta name="author" content="truetone">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
 
@@ -15,29 +16,38 @@
 <body>
     <div class="row">
         <div class="span-12">
-            <h1>Web Audio Experiment</h1>
-            <button class="play-button">Play</button>
+            <h1>Web Audio Experiments</h1>
+            <h2>Generative Music (Experiment 1)</h2>
+            <p><a href="1/">This experiment</a> is inspired by <a href="https://en.wikipedia.org/wiki/Generative_music">Brian Eno's concept of generative music</a>, which is:</p>
+            <blockquote>
+                any music that is ever-different &amp; changing, created by a system.
+            </blockquote>
+            <p><a href="https://teropa.info/loop/">These slides</a> inspired me
+            to think about looping in the context of generative music, which
+            then inspired me to start exploring <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">the
+            JavaScript web audio API</a> again. <a href="1/">This experiment is
+            the first step in that direction</a>.</p>
+
+            <p>I'm creating several oscillator tones with varying wave forms
+            (sine, square, triangle and sawtooth). A couple sets of tones are
+            configured to play a C major chord in the background. Another set
+            of four tones plays the same simple melody in a loop, but at
+            varying times. Finally, there is a set of bass tones that play in
+            regular time to create a predictable rhythm.</p>
+
+            <p>The notes of the melody change over time, go in and
+            out of phase and become more dissonant the longer you listen.
+            Eventually the notes resolve back into a more consonant chord.</p>
+
+            <p>In my opinion, the longer you listen, the more interesting this
+            gets. Occasionally, the tones create some really interesting
+            harmonics. None of this is recorded. This is all being created in
+            real time, by the browser.</p>
+
+            <p>I also used this opportunity to play around with the CSS Grid
+            for layout.</p>
         </div>
     </div>
-    <div class="row">
-        <div class="span-12">
-            <h2>Main Melody</h2>
-        </div>
-    </div>
-    <div class="container">
-        <div class="tone-box" id="tone-box-1">Tone 1</div>
-        <div class="tone-box" id="tone-box-2">Tone 2</div>
-        <div class="tone-box" id="tone-box-3">Tone 3</div>
-        <div class="tone-box" id="tone-box-4">Tone 4</div>
-    </div>
-    <div class="row">
-        <div class="span-12">
-            <h2>Bass</h2>
-        </div>
-    </div>
-    <div class="container full">
-        <div class="tone-box" id="tone-box-5">Tone 5</div>
-    </div>
-<script src="dist/app.js"></script>
 </body>
 </html>

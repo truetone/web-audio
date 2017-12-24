@@ -6,6 +6,8 @@
 
 body {
     font-family: 'Didact Gothic', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.4;
 }
 
 .container {
@@ -22,7 +24,7 @@ body {
     @include grid-container;
 
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 600px;
     padding: 0 20px;
 
     &.flex {

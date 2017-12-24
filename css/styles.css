@@ -393,7 +393,9 @@ template {
 /* Coolors Exported Palette - coolors.co/6f1d1b-bb9457-432818-99582a-ffe6a7 */
 /* RGB */
 body {
-  font-family: 'Didact Gothic', sans-serif; }
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 1.5em;
+  line-height: 1.4; }
 
 .container {
   display: grid;
@@ -404,7 +406,7 @@ body {
 
 .row {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 600px;
   padding: 0 20px; }
   .row::after {
     clear: both;
