@@ -8,6 +8,13 @@ body {
     font-family: 'Didact Gothic', sans-serif;
 }
 
+.container {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 41vh);
+}
+
 .row {
     @include grid-container;
 
@@ -28,6 +35,12 @@ body {
     }
 }
 
+@for $i from 1 through 4 {
+    .margin-top-#{ $i } {
+        margin-top: #{ $i }rem;
+    }
+}
+
 @for $i from 1 through 12 {
     .span-#{ $i } {
         @include grid-column($i)
@@ -35,8 +48,9 @@ body {
 }
 
 .tone-box {
-    flex: 1;
+    // flex: 1;
     min-height: 200px;
+    padding: 1rem;
     transition: .3s background-color;
 }
 
