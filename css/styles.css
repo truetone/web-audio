@@ -395,6 +395,12 @@ template {
 body {
   font-family: 'Didact Gothic', sans-serif; }
 
+.container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 41vh); }
+
 .row {
   margin: 0 auto;
   max-width: 1200px;
@@ -425,6 +431,18 @@ h5 {
 
 h6 {
   font-family: 'Francois One', sans-serif; }
+
+.margin-top-1 {
+  margin-top: 1rem; }
+
+.margin-top-2 {
+  margin-top: 2rem; }
+
+.margin-top-3 {
+  margin-top: 3rem; }
+
+.margin-top-4 {
+  margin-top: 4rem; }
 
 .span-1 {
   width: calc(8.3333333333% - 21.6666666667px);
@@ -487,9 +505,9 @@ h6 {
   margin-left: 20px; }
 
 .tone-box {
-  flex: 1;
   min-height: 200px;
-  transition: .3s background-color; }
+  padding: 1rem;
+  transition: 3s background-color; }
 
 .note-0 {
   background-color: #6f1d1b; }
