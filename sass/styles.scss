@@ -12,7 +12,11 @@ body {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 41vh);
+    grid-template-rows: repeat(2, 26vh);
+
+    &.full {
+        grid-template-columns: 1fr;
+    }
 }
 
 .row {
@@ -70,6 +74,24 @@ $adjusted: 0;
     }
 
     .note-#{ $j } {
+        background-color: $adjusted;
+    }
+}
+
+.bass-note-0 {
+    background-color: $deer;
+}
+
+$adjusted: 0;
+
+@for $j from 1 through 4 {
+    @if $adjusted == 0 {
+        $adjusted: adjust-hue($prune, 90deg);
+    } @else {
+        $adjusted: adjust-hue($adjusted, 90deg);
+    }
+
+    .bass-note-#{ $j } {
         background-color: $adjusted;
     }
 }

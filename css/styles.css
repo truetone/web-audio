@@ -399,7 +399,9 @@ body {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 41vh); }
+  grid-template-rows: repeat(2, 26vh); }
+  .container.full {
+    grid-template-columns: 1fr; }
 
 .row {
   margin: 0 auto;
@@ -531,5 +533,20 @@ h6 {
 
 .note-6 {
   background-color: #5c1b6f; }
+
+.bass-note-0 {
+  background-color: #bb9457; }
+
+.bass-note-1 {
+  background-color: #436f1b; }
+
+.bass-note-2 {
+  background-color: #1b6d6f; }
+
+.bass-note-3 {
+  background-color: #471b6f; }
+
+.bass-note-4 {
+  background-color: #6f1d1b; }
 
 /*# sourceMappingURL=styles.css.map */
