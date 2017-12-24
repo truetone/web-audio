@@ -95,10 +95,10 @@ helpers.loadJSON("dist/notes.json", function(data) {
     const triangleTone1Pan = ctx3.createStereoPanner();
     const triangleTone2Pan = ctx4.createStereoPanner();
     sineTone1Pan.pan.value = -1;
+    triangleTone1Pan.pan.value = -.75;
+    triangleTone2Pan.pan.value = .75;
     sineTone2Pan.pan.value = 1;
     sineTone3Pan.pan.value = 0;
-    triangleTone1Pan.pan.value = .75;
-    triangleTone2Pan.pan.value = -.75;
     const sineTone1 = new tone(ctx1, "sine", sineTone1Gain, sineTone1Pan, notes);
     const sineTone2 = new tone(ctx2, "sine", sineTone2Gain, sineTone2Pan, notes);
     const sineTone3 = new tone(ctx5, "sine", sineTone3Gain, sineTone3Pan, notes);
@@ -204,10 +204,10 @@ helpers.loadJSON("dist/notes.json", function(data) {
             if (!sineTone1.connected) {
                 console.log("Connecting...");
 
-                window.setInterval(playMelody1, 6000);
-                window.setInterval(playMelody2, 2000);
-                window.setInterval(playMelody3, 3000);
+                window.setInterval(playMelody1, 3000);
+                window.setInterval(playMelody3, 6000);
                 window.setInterval(playMelody4, 9000);
+                window.setInterval(playMelody2, 4500);
                 window.setInterval(playMelody5, 3000);
                 triangleTone1.playNote("C2");
                 triangleTone2.playNote("C2");
