@@ -505,9 +505,11 @@ h6 {
   margin-left: 20px; }
 
 .tone-box {
+  font-size: 2em;
+  font-weight: bold;
   min-height: 200px;
   padding: 1rem;
-  transition: 3s background-color; }
+  transition: .3s background-color; }
 
 .note-0 {
   background-color: #6f1d1b; }
