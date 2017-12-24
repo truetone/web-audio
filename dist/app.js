@@ -76,7 +76,7 @@ const panner = __webpack_require__(5);
 const tone = __webpack_require__(2);
 let notes;
 
-helpers.loadJSON("dist/notes.json", function(data) {
+helpers.loadJSON("../dist/notes.json", function(data) {
     notes = JSON.parse(data)
 
     const ctx1 = new AudioContext();
@@ -109,7 +109,7 @@ helpers.loadJSON("dist/notes.json", function(data) {
     const sineTone3Out = ctx5.destination
     const triangleTone1Out = ctx3.destination
     const triangleTone2Out = ctx4.destination
-    const playButtons = document.getElementsByClassName("play-button");
+    // const playButtons = document.getElementsByClassName("play-button");
 
     const cChordNotes = [
         "C3",
@@ -161,85 +161,54 @@ helpers.loadJSON("dist/notes.json", function(data) {
 
     let i, j, k, l, m;
 
-    Array.prototype.forEach.call(playButtons, function(button) {
-        button.onclick = function(e) {
-
+    // Array.prototype.forEach.call(playButtons, function(button) {
+    window.onload = function(e) {
         const chord1PanValue = -.3;
         const chord2PanValue = .3;
         const chord3PanValue = .6;
         const chord4PanValue = -.6;
-        const cChord = new chordMaker(
-            cChordContext,
-            "sine",
-            gain.create(cChordContext, .003),
-            cChordContext.createStereoPanner(),
-            chord1PanValue,
-            cChordNotes,
-            notes);
-        const cChord2 = new chordMaker(
-            cChordContext,
-            "square",
-            gain.create(cChordContext, .0025),
-            cChordContext.createStereoPanner(),
-            chord2PanValue,
-            cChordNotes,
-            notes);
-        const cChord3 = new chordMaker(
-            cChordContext,
-            "triangle",
-            gain.create(cChordContext, .0025),
-            cChordContext.createStereoPanner(),
-            chord3PanValue,
-            cChordNotes,
-            notes);
-        const cChord4 = new chordMaker(
-            cChordContext,
-            "sawtooth",
-            gain.create(cChordContext, .0025),
-            cChordContext.createStereoPanner(),
-            chord4PanValue,
-            cChordNotes,
-            notes);
+        const cChord = new chordMaker(cChordContext, "sine", gain.create(cChordContext, .003), cChordContext.createStereoPanner(), chord1PanValue, cChordNotes, notes);
+        const cChord2 = new chordMaker(cChordContext, "square", gain.create(cChordContext, .0025), cChordContext.createStereoPanner(), chord2PanValue, cChordNotes, notes);
+        const cChord3 = new chordMaker(cChordContext, "triangle", gain.create(cChordContext, .0025), cChordContext.createStereoPanner(), chord3PanValue, cChordNotes, notes);
+        const cChord4 = new chordMaker( cChordContext, "sawtooth", gain.create(cChordContext, .0025), cChordContext.createStereoPanner(), chord4PanValue, cChordNotes, notes);
 
-            if (!sineTone1.connected) {
-                console.log("Connecting...");
+        if (!sineTone1.connected) {
+            console.log("Connecting...");
+            window.setInterval(playMelody1, 3000);
+            window.setInterval(playMelody3, 6000);
+            window.setInterval(playMelody4, 9000);
+            window.setInterval(playMelody2, 4500);
+            window.setInterval(playMelody5, 3000);
+            triangleTone1.playNote("C2");
+            triangleTone2.playNote("C2");
+            sineTone1.playNote("C2");
+            sineTone2.playNote("C2");
+            sineTone3.playNote("C1");
 
-                window.setInterval(playMelody1, 3000);
-                window.setInterval(playMelody3, 6000);
-                window.setInterval(playMelody4, 9000);
-                window.setInterval(playMelody2, 4500);
-                window.setInterval(playMelody5, 3000);
-                triangleTone1.playNote("C2");
-                triangleTone2.playNote("C2");
-                sineTone1.playNote("C2");
-                sineTone2.playNote("C2");
-                sineTone3.playNote("C1");
+            cChord.connect();
+            cChord2.connect();
+            cChord3.connect();
+            cChord4.connect();
 
-                cChord.connect();
-                cChord2.connect();
-                cChord3.connect();
-                cChord4.connect();
+            sineTone1.connect();
+            sineTone2.connect();
+            sineTone3.connect();
+            triangleTone1.connect();
+            triangleTone2.connect();
+        } else {
+            console.log("Disconnecting...");
+            sineTone1.disconnect();
+            sineTone2.disconnect();
+            sineTone3.disconnect();
+            triangleTone1.disconnect();
+            triangleTone2.disconnect();
 
-                sineTone1.connect();
-                sineTone2.connect();
-                sineTone3.connect();
-                triangleTone1.connect();
-                triangleTone2.connect();
-            } else {
-                console.log("Disconnecting...");
-                sineTone1.disconnect();
-                sineTone2.disconnect();
-                sineTone3.disconnect();
-                triangleTone1.disconnect();
-                triangleTone2.disconnect();
-
-                cChord.connect();
-                cChord2.connect();
-                cChord3.connect();
-                cChord4.connect();
-            }
-        };
-    });
+            cChord.connect();
+            cChord2.connect();
+            cChord3.connect();
+            cChord4.connect();
+        }
+    }
 
     changeBassElementNote = function(id, idx) {
         // set the corresponding css class for the note
