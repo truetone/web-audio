@@ -60,20 +60,123 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+class Tone {
+    constructor(signalChain, type, gain, panner, notes) {
+        const self = this;
+        this.gain = gain;
+        this.panner = panner;
+        this.gain.connect(this.panner);
+        this.signalChain = signalChain;
+        this.oscillator = this.signalChain.createOscillator();
+        this.oscillator.type = type;
+        this.oscillator.start();
+        this.defaultFrequency = 261.33;
+        this.lowestFrequency = 16.35;
+        this.notes = notes;
+        this.connected = false;
+        this.melodyIndex;
+    }
+
+    connect() {
+        this.connected = true;
+
+        // connect the oscillator to the gain node
+        this.oscillator.connect(this.gain);
+
+        // connect the gain node to the panner
+        this.gain.connect(this.panner);
+
+        // connect the panner to the destination
+        this.panner.connect(this.signalChain.destination);
+    }
+
+    disconnect() {
+        this.connected = false;
+        this.oscillator.disconnect();
+    }
+
+    playNote(note) {
+        if (typeof note === "undefined") {
+            console.warn("Got undefined note")
+        } else {
+            console.log("Playing ", this.notes[note]);
+            this.oscillator.frequency.value = this.notes[note];
+        }
+    }
+
+    toggle() {
+        if (this.connected) {
+            this.disconnect();
+        } else {
+            this.connect();
+        }
+    }
+
+}
+
+module.exports = Tone
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+class Gain {
+    create(ctx, value) {
+        console.log("Setting gain value to ", value);
+        this.gain = ctx.createGain();
+        this.gain.gain.value = value;
+        return this.gain;
+    }
+
+    change(value) {
+        console.log("Setting gain value to ", value);
+        this.gain.gain.value = value;
+    }
+}
+
+module.exports = Gain;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+class Helpers {
+    static loadJSON(path, callback) {
+        const xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', path, true);
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);
+    }
+}
+
+module.exports = Helpers;
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Gain = __webpack_require__(4);
-const audio = __webpack_require__(1);
-const chordMaker = __webpack_require__(6);
+const Gain = __webpack_require__(1);
+const audio = __webpack_require__(4);
+const chordMaker = __webpack_require__(5);
 const gain = new Gain();
-const helpers = __webpack_require__(3);
-const panner = __webpack_require__(5);
-const tone = __webpack_require__(2);
+const helpers = __webpack_require__(2);
+const panner = __webpack_require__(6);
+const tone = __webpack_require__(0);
 let notes;
 
 if (typeof window.AudioContext || window.webkitAudioContext == "function") {
@@ -315,7 +418,7 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
 
 
 /***/ }),
-/* 1 */
+/* 4 */
 /***/ (function(module, exports) {
 
 class Audio {
@@ -332,128 +435,10 @@ module.exports = Audio;
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-class Tone {
-    constructor(signalChain, type, gain, panner, notes) {
-        const self = this;
-        this.gain = gain;
-        this.panner = panner;
-        this.gain.connect(this.panner);
-        this.signalChain = signalChain;
-        this.oscillator = this.signalChain.createOscillator();
-        this.oscillator.type = type;
-        this.oscillator.start();
-        this.defaultFrequency = 261.33;
-        this.lowestFrequency = 16.35;
-        this.notes = notes;
-        this.connected = false;
-        this.melodyIndex;
-    }
-
-    connect() {
-        this.connected = true;
-
-        // connect the oscillator to the gain node
-        this.oscillator.connect(this.gain);
-
-        // connect the gain node to the panner
-        this.gain.connect(this.panner);
-
-        // connect the panner to the destination
-        this.panner.connect(this.signalChain.destination);
-    }
-
-    disconnect() {
-        this.connected = false;
-        this.oscillator.disconnect();
-    }
-
-    playNote(note) {
-        if (typeof note === "undefined") {
-            console.warn("Got undefined note")
-        } else {
-            console.log("Playing ", this.notes[note]);
-            this.oscillator.frequency.value = this.notes[note];
-        }
-    }
-
-    toggle() {
-        if (this.connected) {
-            this.disconnect();
-        } else {
-            this.connect();
-        }
-    }
-
-}
-
-module.exports = Tone
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-class Helpers {
-    static loadJSON(path, callback) {
-        const xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-        xobj.open('GET', path, true);
-        xobj.onreadystatechange = function () {
-            if (xobj.readyState == 4 && xobj.status == "200") {
-                callback(xobj.responseText);
-            }
-        };
-        xobj.send(null);
-    }
-}
-
-module.exports = Helpers;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-class Gain {
-    create(ctx, value) {
-        console.log("Setting gain value to ", value);
-        this.gain = ctx.createGain();
-        this.gain.gain.value = value;
-        return this.gain;
-    }
-
-    change(value) {
-        console.log("Setting gain value to ", value);
-        this.gain.gain.value = value;
-    }
-}
-
-module.exports = Gain;
-
-
-/***/ }),
 /* 5 */
-/***/ (function(module, exports) {
-
-class Panner {
-    static create (ctx, value) {
-        const panner = ctx.createPanner();
-        panner.value = value;
-        return panner
-    }
-}
-
-module.exports = Panner;
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const tone = __webpack_require__(2);
+const tone = __webpack_require__(0);
 
 class Chord {
     constructor(ctx, toneType, gain, pan, panValue, chordNotes, notes) {
@@ -492,6 +477,21 @@ class Chord {
 }
 
 module.exports = Chord;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+class Panner {
+    static create (ctx, value) {
+        const panner = ctx.createPanner();
+        panner.value = value;
+        return panner
+    }
+}
+
+module.exports = Panner;
 
 
 /***/ })

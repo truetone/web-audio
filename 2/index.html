@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Visual Analyzer (Second Experiment)</title>
+  <meta name="author" content="Tony Thomas">
+
+  <link rel="stylesheet" href="../css/styles.css?v=1.0">
+  <meta name="description" content="Web audio experiment that creates several oscillator tones and plays them with staggered time. Inspired by the concept of generative music. Uses the JavaScript web audio API and CSS grid.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <div class="row">
+        <div class="span-12" id="warning"></div>
+        <button class="play-button">Play</button>
+    </div>
+    <div class="container full">
+        <div class="tone-box" id="tone-box-1">Tone 1</div>
+        <!-- <div class="tone-box" id="tone-box-2">Tone 2</div>
+        <div class="tone-box" id="tone-box-3">Tone 3</div>
+        <div class="tone-box" id="tone-box-4">Tone 4</div> -->
+    </div>
+    <!--
+    <div class="container full">
+        <div class="tone-box" id="tone-box-5">Tone 5</div>
+    </div>
+    -->
+    <script>var _gaq=[['_setAccount','UA-619508-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));</script>
+<script src="../dist/visualizer.js"></script>
+</body>
+</html>
