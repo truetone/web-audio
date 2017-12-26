@@ -553,4 +553,9 @@ h6 {
 canvas {
   margin: 0 auto; }
 
+ul.inline li {
+  display: inline-block; }
+ul.inline label {
+  margin-right: 10px; }
+
 /*# sourceMappingURL=styles.css.map */

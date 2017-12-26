@@ -181,6 +181,8 @@ const gain = new Gain();
 const scopeCanvas = document.getElementById('oscilloscope');
 const scopeContext = scopeCanvas.getContext('2d');
 const playButtons = document.getElementsByClassName("play-button");
+const waveTypeCheckboxes = document.getElementsByClassName("wave-type-checkbox");
+const noteCheckboxes = document.getElementsByClassName("note-checkbox");
 let sineTone1;
 let analyser;
 let waveform;
@@ -191,6 +193,19 @@ Array.prototype.forEach.call(playButtons, function(button) {
     ['click', 'touch'].map(function(eventName) {
         console.log("Binding " + eventName + " to: ", button);
         button.addEventListener(eventName, pointerHandler);
+    });
+});
+
+Array.prototype.forEach.call(waveTypeCheckboxes, function(cb) {
+    ['click', 'touch'].map(function(eventName) {
+        console.log("Binding " + eventName + " to: ", cb);
+        cb.addEventListener(eventName, cbPointerHandler);
+    });
+});
+
+Array.prototype.forEach.call(noteCheckboxes, function(cb) {
+    ['click', 'touch'].map(function(eventName) {
+        cb.addEventListener(eventName, noteCbPointerHandler);
     });
 });
 
@@ -218,6 +233,7 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
 function pointerHandler(event) {
     if (!sineTone1.connected) {
         console.log("Connecting...");
+        sineTone1.playNote("C4");
         sineTone1.connect();
         updateWaveform();
         drawOscilloscope();
@@ -225,6 +241,15 @@ function pointerHandler(event) {
         console.log("Disconnecting...");
         sineTone1.disconnect();
     }
+};
+
+function cbPointerHandler(event) {
+    console.log(sineTone1);
+    sineTone1.oscillator.type = this.value;
+};
+
+function noteCbPointerHandler(event) {
+    sineTone1.playNote(this.value);
 };
 
 function updateWaveform() {

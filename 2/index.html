@@ -6,7 +6,7 @@
   <meta name="author" content="Tony Thomas">
 
   <link rel="stylesheet" href="../css/styles.css?v=1.0">
-  <meta name="description" content="Web audio experiment that creates several oscillator tones and plays them with staggered time. Inspired by the concept of generative music. Uses the JavaScript web audio API and CSS grid.">
+  <meta name="description" content="A web audio API experiment that creates an oscillator tone and matching visualization.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -14,15 +14,29 @@
 </head>
 <body>
     <div class="row">
+        <h1>Oscillator with visualization</h1>
         <div class="span-12" id="warning"></div>
         <button class="play-button">Play</button>
+        <ul class="inline">
+            <li><label for="checkbox-sine">sine</label><input name="wave-type" class="wave-type-checkbox" id="checkbox-sine" type="radio" value="sine" checked></li>
+            <li><label for="checkbox-square">square</label><input name="wave-type" class="wave-type-checkbox" id="checkbox-square" type="radio" value="square"></li>
+            <li><label for="checkbox-triangle">triangle</label><input name="wave-type" class="wave-type-checkbox" id="checkbox-triangle" type="radio" value="triangle"></li>
+            <li><label for="checkbox-sawtooth">sawtooth</label><input name="wave-type" class="wave-type-checkbox" id="checkbox-sawtooth" type="radio" value="sawtooth"></li>
+        </ul>
+    </div>
+    <div class="row">
+        <ul class="inline">
+            <li><label for="checkbox-note-c">C4</label><input name="note" class="note-checkbox" id="checkbox-note-c" type="radio" value="C4" checked></li>
+            <li><label for="checkbox-note-d">D4</label><input name="note" class="note-checkbox" id="checkbox-note-d" type="radio" value="D4"></li>
+            <li><label for="checkbox-note-e">E4</label><input name="note" class="note-checkbox" id="checkbox-note-e" type="radio" value="E4"></li>
+            <li><label for="checkbox-note-f">F4</label><input name="note" class="note-checkbox" id="checkbox-note-f" type="radio" value="F4"></li>
+            <li><label for="checkbox-note-g">G4</label><input name="note" class="note-checkbox" id="checkbox-note-g" type="radio" value="G4"></li>
+            <li><label for="checkbox-note-a">A4</label><input name="note" class="note-checkbox" id="checkbox-note-a" type="radio" value="A4"></li>
+            <li><label for="checkbox-note-b">B4</label><input name="note" class="note-checkbox" id="checkbox-note-b" type="radio" value="B4"></li>
+        </ul>
     </div>
     <div class="container full">
         <canvas id="oscilloscope"></canvas>
-        <!-- <div class="tone-box" id="tone-box-1">Tone 1</div>
-        <div class="tone-box" id="tone-box-2">Tone 2</div>
-        <div class="tone-box" id="tone-box-3">Tone 3</div>
-        <div class="tone-box" id="tone-box-4">Tone 4</div> -->
     </div>
     <!--
     <div class="container full">

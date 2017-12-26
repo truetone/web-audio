@@ -100,3 +100,15 @@ $adjusted: 0;
 canvas {
     margin: 0 auto;
 }
+
+ul {
+    &.inline {
+        li {
+            display: inline-block;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    }
+}
