@@ -94,6 +94,7 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
         let i, j, k, l, m;
 
         // Array.prototype.forEach.call(playButtons, function(button) {
+        // TODO onload is buggy. Use another event
         window.onload = function(e) {
             const chord1PanValue = -.3;
             const chord2PanValue = .3;

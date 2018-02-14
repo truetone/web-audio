@@ -96,3 +96,24 @@ $adjusted: 0;
         background-color: $adjusted;
     }
 }
+
+.modal-layer, .wrapper {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.wrapper {
+    z-index: 0;
+}
+
+.modal-layer {
+    color: #000;
+    display: none;
+    opacity: .9;
+    z-index: 100;
+
+    &.active {
+        display: block;
+    }
+}
