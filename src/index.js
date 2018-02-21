@@ -7,6 +7,9 @@ const panner = require("./panner.js");
 const tone = require("./tone.js");
 let notes;
 
+const startButton = document.getElementById("start-button");
+const modals = document.getElementsByClassName("modal-layer");
+
 if (typeof window.AudioContext || window.webkitAudioContext == "function") {
     helpers.loadJSON("../dist/notes.json", function(data) {
         notes = JSON.parse(data)
@@ -41,7 +44,6 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
         const sineTone3Out = ctx5.destination
         const triangleTone1Out = ctx3.destination
         const triangleTone2Out = ctx4.destination
-        // const playButtons = document.getElementsByClassName("play-button");
 
         const cChordNotes = [
             "C3",
@@ -93,9 +95,9 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
 
         let i, j, k, l, m;
 
-        // Array.prototype.forEach.call(playButtons, function(button) {
-        // TODO onload is buggy. Use another event
-        window.onload = function(e) {
+        startButton.onclick = function() {
+            modals[0].classList.remove("active");
+
             const chord1PanValue = -.3;
             const chord2PanValue = .3;
             const chord3PanValue = .6;
