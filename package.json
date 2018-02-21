@@ -16,6 +16,7 @@
     "src"
   ],
   "devDependencies": {
+    "mocha": "^5.0.1",
     "webpack": "^3.10.0"
   }
 }
