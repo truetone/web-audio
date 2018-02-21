@@ -1,0 +1,73 @@
+# https://www.websequencediagrams.com/
+
+title: Web Audio flow
+
+Browser->Synth: someone clicked on the start button
+
+loop n times
+
+Synth->Synth: create an Audio context
+
+end
+
+loop n times
+
+Synth->Gain: create a Gain node
+
+Gain->Synth: here is a Gain node
+
+end
+
+loop n times
+
+Synth->Synth: create a StereoPanner node
+
+end
+
+loop n times
+
+Synth->Synth: set n pan value
+
+end
+
+loop n times
+
+Synth->Tone: heres' a context, wave type, gain node, pan node and array of notes
+
+Tone->Synth: here's a tone
+
+end
+
+loop n times
+
+Synth->Synth: create a destination using context n
+
+end
+
+loop n times
+
+Synth->ChordMaker: here's a context, wave type, gain node, panner node, pan value, chord notes, all our notes
+
+loop n times
+
+ChordMaker->Tone: here's a ctx, toneType, gain, pan, panValue, chordNotes, notes
+
+Tone->ChordMaker: here's a tone
+
+end
+
+ChordMaker->Synth: here's a chord (series of tones)
+
+end
+
+loop n times
+
+Synth->Synth: connect tone n
+
+end
+
+loop n times
+
+Synth->Synth: play melody n
+
+end

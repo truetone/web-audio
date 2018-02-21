@@ -550,4 +550,21 @@ h6 {
 .bass-note-4 {
   background-color: #6f1d1b; }
 
+.modal-layer, .wrapper {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
+.wrapper {
+  z-index: 0; }
+
+.modal-layer {
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  z-index: 100; }
+  .modal-layer.active {
+    align-items: center;
+    display: flex;
+    justify-content: center; }
+
 /*# sourceMappingURL=styles.css.map */
