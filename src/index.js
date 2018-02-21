@@ -19,6 +19,7 @@ function getRandom() {
 
 if (typeof window.AudioContext || window.webkitAudioContext == "function") {
     helpers.loadJSON("../dist/notes.json", function(data) {
+
         notes = JSON.parse(data)
 
         const ctx1 = new (window.AudioContext || window.webkitAudioContext)();
@@ -52,59 +53,21 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
         const triangleTone1Out = ctx3.destination
         const triangleTone2Out = ctx4.destination
 
-        const cChordNotes = [
-            "C3",
-            "C4",
-            "C5",
-            "E3",
-            "E4",
-            "E5",
-            "G3",
-            "G4",
-            "G5"
-        ];
-
-        const cChordContext = new AudioContext();
-
-        const melody = [
-            "C4",
-            "E4",
-            "D4",
-            "G4",
-            "F4",
-            "A#3/Bb3"
-        ];
-
-        const melodyDeep = [
-            "C2",
-            "G2",
-            "C2",
-            "E2"
-        ];
-
-        const melody2 = [
-            "F4",
-            "B4",
-            "C4",
-            "D3",
-            "F4",
-            "D2"
-        ];
-
-        const melody3 = [
-            "C3",
-            "E5",
-            "F3",
-            "G2",
-            "C3",
-            "A4"
-        ];
-
-        let i, j, k, l, m;
-
-        startButton.onclick = function() {
+        const eventHandler = function() {
             modals[0].classList.remove("active");
 
+            const cChordContext = new AudioContext();
+            const cChordNotes = [
+                "C3",
+                "C4",
+                "C5",
+                "E3",
+                "E4",
+                "E5",
+                "G3",
+                "G4",
+                "G5"
+            ];
             const chord1PanValue = -.3;
             const chord2PanValue = .3;
             const chord3PanValue = .6;
@@ -151,6 +114,47 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
                 cChord4.connect();
             }
         }
+
+        // bind events to our callback function
+        startButton.onclick = eventHandler;
+        startButton.addEventListener("touchstart", eventHandler);
+
+        const melody = [
+            "C4",
+            "E4",
+            "D4",
+            "G4",
+            "F4",
+            "A#3/Bb3"
+        ];
+
+        const melodyDeep = [
+            "C2",
+            "G2",
+            "C2",
+            "E2"
+        ];
+
+        const melody2 = [
+            "F4",
+            "B4",
+            "C4",
+            "D3",
+            "F4",
+            "D2"
+        ];
+
+        const melody3 = [
+            "C3",
+            "E5",
+            "F3",
+            "G2",
+            "C3",
+            "A4"
+        ];
+
+        let i, j, k, l, m;
+
 
         changeBassElementNote = function(id, idx) {
             // set the corresponding css class for the note
