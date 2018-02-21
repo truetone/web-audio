@@ -140,6 +140,13 @@ let notes;
 const startButton = document.getElementById("start-button");
 const modals = document.getElementsByClassName("modal-layer");
 
+// TODO make this not-global
+function getRandom() {
+  const n = Math.floor(Math.random() * (7000 - 4000 + 1)) + 4000;
+  console.log("Random integer between 7000 and 4000:", n);
+  return n;
+};
+
 if (typeof window.AudioContext || window.webkitAudioContext == "function") {
     helpers.loadJSON("../dist/notes.json", function(data) {
         notes = JSON.parse(data)
@@ -239,11 +246,11 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
 
             if (!sineTone1.connected) {
                 console.log("Connecting...");
-                window.setInterval(playMelody1, 5000);
-                window.setInterval(playMelody3, 5100);
-                window.setInterval(playMelody4, 5300);
-                window.setInterval(playMelody2, 5400);
-                window.setInterval(playMelody5, 2500);
+                window.setInterval(playMelody1, getRandom());
+                window.setInterval(playMelody3, getRandom());
+                window.setInterval(playMelody4, getRandom());
+                window.setInterval(playMelody2, getRandom());
+                window.setInterval(playMelody5, getRandom());
                 triangleTone1.playNote("C2");
                 triangleTone2.playNote("C2");
                 sineTone1.playNote("C2");
