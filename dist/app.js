@@ -136,6 +136,7 @@ const helpers = __webpack_require__(5);
 const panner = __webpack_require__(6);
 const tone = __webpack_require__(0);
 let notes;
+let random;
 
 const startButton = document.getElementById("start-button");
 const modals = document.getElementsByClassName("modal-layer");
@@ -209,11 +210,12 @@ if (typeof window.AudioContext || window.webkitAudioContext == "function") {
 
             if (!sineTone1.connected) {
                 console.log("Connecting...");
-                window.setInterval(playMelody1, getRandom());
-                window.setInterval(playMelody3, getRandom());
-                window.setInterval(playMelody4, getRandom());
-                window.setInterval(playMelody2, getRandom());
-                window.setInterval(playMelody5, getRandom());
+                rand = getRandom();
+                window.setInterval(playMelody1, rand);
+                window.setInterval(playMelody3, rand + 10);
+                window.setInterval(playMelody4, rand + 20);
+                window.setInterval(playMelody2, rand + 30);
+                window.setInterval(playMelody5, rand + 40);
                 triangleTone1.playNote("C2");
                 triangleTone2.playNote("C2");
                 sineTone1.playNote("C2");
