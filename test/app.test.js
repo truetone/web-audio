@@ -5,11 +5,12 @@ jest.mock('../src/synth.js');
 beforeEach(() => {
   // Clear all instances and calls to constructor and all methods:
   Synth.mockClear();
-  Synth.eventHandler = function eventHandler() {};
+
   const addEventListener = jest.fn();
   const getElementByIdReturnValue = {
     addEventListener: addEventListener
   };
+
   document.getElementById = jest.fn();
   document.getElementById.mockReturnValueOnce(getElementByIdReturnValue);
 });
@@ -46,5 +47,5 @@ test("a new app should bind Synth.eventHandler to the start button", () => {
 test("a new app should add a 'touchstart' event listener with synth.evenHandler as the callback", () => {
   const app = new App(document);
 
-  expect(app.startButton.addEventListener).toHaveBeenCalledWith("touchstart", Synth.eventHandler);
+  expect(app.startButton.addEventListener).toHaveBeenCalledWith("touchstart", app.synth.eventHandler);
 });
