@@ -1,10 +1,14 @@
 const App = require("../src/app.js");
 const Synth = require("../src/synth.js");
+const Ui = require("../src/ui.js");
+
 jest.mock('../src/synth.js');
+jest.mock('../src/ui.js');
 
 beforeEach(() => {
   // Clear all instances and calls to constructor and all methods:
   Synth.mockClear();
+  Ui.mockClear();
 
   const addEventListener = jest.fn();
   const getElementByIdReturnValue = {
@@ -34,8 +38,8 @@ test("a new app should call the Synth.constructor w/ an array of modals", () => 
   document.getElementsByClassName.mockReturnValueOnce(expected_modals);
   const app = new App(document);
 
-  expect(Synth).toHaveBeenCalledTimes(1);
-  expect(Synth).toHaveBeenCalledWith(expected_modals);
+  expect(Ui).toHaveBeenCalledTimes(1);
+  expect(Ui).toHaveBeenCalledWith(expected_modals);
 });
 
 test("a new app should bind Synth.eventHandler to the start button", () => {
@@ -44,8 +48,8 @@ test("a new app should bind Synth.eventHandler to the start button", () => {
   expect(app.startButton.onclick).toBeDefined();
 });
 
-test("a new app should add a 'touchstart' event listener with synth.evenHandler as the callback", () => {
+test("a new app should add a 'touchstart' event listener with ui.evenHandler as the callback", () => {
   const app = new App(document);
 
-  expect(app.startButton.addEventListener).toHaveBeenCalledWith("touchstart", app.synth.eventHandler);
+  expect(app.startButton.addEventListener).toHaveBeenCalledWith("touchstart", app.ui.eventHandler);
 });
