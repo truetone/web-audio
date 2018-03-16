@@ -3,10 +3,10 @@ class Ui {
     // bind events to our callback function
     startButton.onclick = this.eventHandler;
     startButton.addEventListener("touchstart", this.eventHandler);
+    this.startButton = startButton
   }
 
   eventHandler() {
-    
   };
 }
 

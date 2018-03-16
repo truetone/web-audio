@@ -23,7 +23,7 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch"
   },
   "jest": {
     "moduleNameMapper": {
