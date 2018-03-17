@@ -9,14 +9,14 @@ beforeEach(() => {
 });
 
 describe("Ui.constructor", () => {
-  it("a new ui should bind eventHandler to startButton.onclick", () => {
+  it("should bind eventHandler to startButton.onclick", () => {
     const mock_event = jest.fn();
     const ui = new Ui([], start_button, mock_event);
     expect(ui.startButton).toBeDefined();
     expect(ui.startButton.onclick).toBeDefined();
   });
 
-  it("a new ui should add a 'touchstart' event listener with evenHandler as the callback", () => {
+  it("should add a 'touchstart' event listener with evenHandler as the callback", () => {
     const ui = new Ui([], start_button);
     expect(ui.startButton.addEventListener).toHaveBeenCalledWith("touchstart", ui.eventHandler);
   });
@@ -28,7 +28,7 @@ describe("Ui.constructor", () => {
 });
 
 describe("Ui.eventHandler", () => {
-  it("should trigger a startsynth event on click or touchstart", () => {
+  it("should trigger a startsynth event on click", () => {
     document.body.innerHTML =
     '<div id="listener">' +
     '  <button id="button" />' +
@@ -37,9 +37,52 @@ describe("Ui.eventHandler", () => {
     const listener = document.getElementById("listener");
     const customEvent = new Event("startsynth", {bubbles: true});
     const ui = new Ui([], button, customEvent);
-    listener.gotMessage = false;
-    listener.addEventListener("startsynth", function() { listener.gotMessage = true; });
+    listener.gotClick = false;
+    listener.gotTouch = false;
+    listener.addEventListener("startsynth", function() { listener.gotClick = true; });
     button.click();
-    expect(listener.gotMessage).toEqual(true);
+    expect(listener.gotClick).toEqual(true);
   });
+
+  it("should trigger a startsynth event on touchstart", () => {
+    document.body.innerHTML =
+    '<div id="listener">' +
+    '  <button id="button" />' +
+    '</div>';
+    const button = document.getElementById("button");
+    const listener = document.getElementById("listener");
+    const customEvent = new Event("startsynth", {bubbles: true});
+    const ui = new Ui([], button, customEvent);
+    const touchEvent = new TouchEvent("touchstart");
+    listener.gotTouch = false;
+    listener.addEventListener("startsynth", function() { listener.gotTouch = true; });
+    button.dispatchEvent(touchEvent);
+    expect(listener.gotTouch).toEqual(true);
+  });
+
+  // Synth's event listener will have to stop propagation like the listener below
+  // it("should trigger a startsynth event that does not propagate", () => {
+  //   document.body.innerHTML =
+  //   '<div id="parent">' +
+  //     '<div id="listener">' +
+  //     '  <button id="button" />' +
+  //     '</div>' +
+  //   '</div>';
+  //   const button = document.getElementById("button");
+  //   const listener = document.getElementById("listener");
+  //   const parentElem = document.getElementById("parent");
+  //   const customEvent = new Event("startsynth", {bubbles: true});
+  //   const ui = new Ui([], button, customEvent);
+  //   const touchEvent = new TouchEvent("touchstart");
+
+  //   listener.gotTouch = false;
+  //   listener.addEventListener("startsynth", function(e) { listener.gotTouch = true; e.stopPropagation(); });
+
+  //   parentElem.gotTouch = false;
+  //   parentElem.addEventListener("startsynth", function() { parentElem.gotTouch = true; });
+
+  //   button.dispatchEvent(touchEvent);
+
+  //   expect(parentElem.gotTouch).toEqual(false);
+  // });
 });
