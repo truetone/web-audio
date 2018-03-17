@@ -1,15 +1,21 @@
 class Ui {
-  constructor(modals, startButton, startSynthEvent) {
-    // bind events to our callback function
-    startButton.startSynthEvent = startSynthEvent;
+  constructor(modals, startButton, synth) {
+    // attach the synth to the target element because "this" loses it's context
+    // in the eventHandler
+    startButton.synth = synth;
+    startButton.modals = modals;
     startButton.onclick = this.eventHandler;
     startButton.addEventListener("touchstart", this.eventHandler);
-    this.startButton = startButton
+    this.startButton = startButton;
+    this.modals = modals;
+    // this.synth = synth;
   }
 
   eventHandler(event) {
-    const target = event.target;
-    target.dispatchEvent(target.startSynthEvent);
+    const targetElem = event.target;
+    targetElem.synth.start();
+    // TODO iterate over these instead expecting one
+    targetElem.modals[0].classList.remove("active");
   };
 }
 

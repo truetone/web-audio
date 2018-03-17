@@ -37,9 +37,9 @@ describe("App.constructor", () => {
     document.getElementsByClassName = jest.fn();
     document.getElementsByClassName.mockReturnValueOnce(expected_modals);
     const mock_event = jest.fn();
-    const app = new App(document, mock_event);
+    const app = new App(document);
 
     expect(Ui).toHaveBeenCalledTimes(1);
-    expect(Ui).toHaveBeenCalledWith(expected_modals, expected_start_button, mock_event);
+    expect(Ui).toHaveBeenCalledWith(expected_modals, expected_start_button, app.synth);
   });
 });
