@@ -47,6 +47,22 @@ describe("Ui.eventHandler", () => {
     ui.startButton.click();
 
     expect(ui.startButton.synth.start).toHaveBeenCalled();
+  });
+
+  it("should remove the 'active' class from any modals", () => {
+    const mock_synth = {
+      start: jest.fn()
+    };
+    document.body.innerHTML =
+    '<div id="listener">' +
+    '  <div class="modal-layer active"></div>' +
+    '  <button id="button" />' +
+    '</div>';
+    modals = document.getElementsByClassName("modal-layer");
+    const start_button = document.getElementById("button");
+    const ui = new Ui(modals, start_button, mock_synth);
+    ui.startButton.click();
+
     expect(ui.modals[0].classList.length).toEqual(1);
     expect(ui.modals[0].classList[0]).toEqual("modal-layer");
   });
