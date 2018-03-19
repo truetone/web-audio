@@ -1,21 +1,39 @@
-const helpers = require("./helpers.js");
-const audioContext = require("./audio.js");
-const nts = require("./notes.js");
-const ctx = require("./context.js");
+const audioContext = require("./audio");
+const nts = require("./notes");
+const ctx = require("./context");
+const tone = require("./tone");
 
+// tones consist of:
+// * an audio context
+//   * context.destination
+// * a gain node
+// * a panner node
+// * a Tone object
+//   * context
+//   * type
+//   * gain
+//   * pan
+//   * note(s)
 class Synth {
-  constructor(ctxClass, number_of_contexts = 6) {
+  constructor(ctxClass, toneConfigs) {
     this.audioContexts = [];
+    this.tones = [];
     this.notes = nts.getNotes();
     this.ctxClass = ctxClass;
 
-    for (var i = 0; i < number_of_contexts; i++) {
-      this.audioContexts.push(this.createContext());
+    for (var i = 0; i < toneConfigs.length; i++) {
+      const ctx = this.createContext();
+      const config = toneConfigs[i];
+      this.audioContexts.push(ctx);
+      this.tones.push(this.createTone(ctx, config.type, config.gain, config.pan));
     }
   }
 
   createContext() {
     return new ctx(this.ctxClass);
+  }
+
+  createTone(ctx, type, gain, pan) {
   }
 }
 

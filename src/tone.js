@@ -1,11 +1,10 @@
 class Tone {
-    constructor(signalChain, type, gain, panner, notes) {
-        const self = this;
+    constructor(ctx, type, gain, panner, notes) {
         this.gain = gain;
         this.panner = panner;
         this.gain.connect(this.panner);
-        this.signalChain = signalChain;
-        this.oscillator = this.signalChain.createOscillator();
+        this.ctx = ctx;
+        this.oscillator = this.ctx.createOscillator();
         this.oscillator.type = type;
         this.oscillator.start();
         this.defaultFrequency = 261.33;
@@ -25,7 +24,7 @@ class Tone {
         this.gain.connect(this.panner);
 
         // connect the panner to the destination
-        this.panner.connect(this.signalChain.destination);
+        this.panner.connect(this.ctx.destination);
     }
 
     disconnect() {
