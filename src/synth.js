@@ -34,6 +34,7 @@ class Synth {
   }
 
   createTone(ctx, type, gain, pan) {
+    return new tone(ctx, type, gain, pan, this.notes);
   }
 }
 

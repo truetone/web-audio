@@ -1,7 +1,10 @@
+const gain = require("./gain");
+const panner = require("./panner");
+
 class Tone {
-    constructor(ctx, type, gain, panner, notes) {
-        this.gain = gain;
-        this.panner = panner;
+    constructor(ctx, type, gain_value, panner_value, notes) {
+        this.gain = new gain(ctx, gain_value);
+        this.panner = panner.create(ctx, panner_value);
         this.gain.connect(this.panner);
         this.ctx = ctx;
         this.oscillator = this.ctx.createOscillator();

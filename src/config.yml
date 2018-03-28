@@ -1,0 +1,40 @@
+---
+synth:
+  tones:
+    - name: sine1
+      type: sine
+      note: C4
+      gain: .1
+      pan: -1
+    - name: sine2
+      type: sine
+      note: C4
+      gain: .1
+      pan: -1
+    - name: sine3
+      type: sine
+      note: C4
+      gain: .1
+      pan: 0
+    - name: triangle1
+      type: triangle
+      note: C4
+      gain: .04
+      pan: -.75
+    - name: triangle2
+      type: triangle
+      note: C4
+      gain: .04
+      pan: .75
+  chords:
+    - name: C
+      notes:
+        - "C3"
+        - "C4"
+        - "C5"
+        - "E3"
+        - "E4"
+        - "E5"
+        - "G3"
+        - "G4"
+        - "G5"
