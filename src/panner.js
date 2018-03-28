@@ -1,6 +1,6 @@
 class Panner {
-  static create (ctx, value) {
-    const panner = ctx.createPanner();
+  static create (contextObject, value) {
+    const panner = contextObject.ctx.createPanner();
     panner.value = value;
     return panner
   }

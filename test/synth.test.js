@@ -3,6 +3,9 @@ const Context = require("../src/context");
 const Tone = require("../src/tone");
 let mockCtx;
 let mockCreatePanner;
+let mockCreateGain;
+let mockGainConnect;
+let mockGain;
 const toneConfigs = [
   {
     type: "sine",
@@ -21,12 +24,32 @@ const toneConfigs = [
 beforeAll(() => {
   mockCtx = jest.fn();
   mockCreatePanner = jest.fn();
+  mockCreateGain = jest.fn();
+  mockGain = jest.fn();
+  mockCreateGain.mockReturnValue(mockGain);
+  mockGainConnect = jest.fn();
+  mockCreatePanner.mockReturnValue({});
+
+  mockGain.mockImplementation(() => {
+    return {
+      connect: mockGainConnect
+    }
+  });
+
+  mockGainConnect.mockImplementation(() => {
+    return {
+      connect: mockGainConnect
+    }
+  });
+
 
   mockCtx.mockImplementation(() => {
     return {
-      createPanner: mockCreatePanner
+      createPanner: mockCreatePanner,
+      createGain: mockCreateGain
     };
-  });
+  })
+  .mockName("mockCtx");
 });
 
 beforeEach(() => {
