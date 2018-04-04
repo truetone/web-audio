@@ -25,12 +25,12 @@ class Synth {
       const ctx = this.createContext();
       const config = toneConfigs[i];
       this.audioContexts.push(ctx);
-      this.tones.push(this.createTone(ctx, config.type, config.gain, config.pan));
+      this.tones.push(this.createTone(ctx.ctx, config.type, config.gain, config.pan));
     }
   }
 
   createContext() {
-    return new ctx(this.ctxClass);
+    return new ctx(this.ctxClass, name);
   }
 
   createTone(ctx, type, gain, pan) {
