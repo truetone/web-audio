@@ -5,7 +5,7 @@ class Tone {
   constructor(ctx, name, type, gain_value, panner_value, notes) {
     this.name = name + ".Tone";
     this.gain = new gain(ctx, this.name, gain_value);
-    this.panner = panner.create(ctx, panner_value);
+    this.panner = new panner(ctx, name, panner_value);
     this.destination = ctx.destination;
     this.oscillator = this.startOscillator(ctx, type);
     // TODO set up Notes class to know what these are

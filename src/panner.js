@@ -1,8 +1,16 @@
 class Panner {
-  static create (ctx, value) {
-    const panner = ctx.createPanner();
-    panner.value = value;
-    return panner
+  constructor(ctx, name, value) {
+    this.name = name + ".Panner";
+    this.panner = ctx.createPanner();
+    this.set(value);
+  }
+
+  set(value) {
+    this.panner.value = value;
+  }
+
+  get() {
+    return this.panner.value;
   }
 }
 
