@@ -1,7 +1,6 @@
-const audioContext = require("./audio");
-const nts = require("./notes");
-const ctx = require("./context");
-const tone = require("./tone");
+const Notes = require("./notes");
+const Context = require("./context");
+const Chord = require("./chord");
 
 // tones consist of:
 // * an audio context
@@ -17,24 +16,24 @@ const tone = require("./tone");
 class Synth {
   constructor(ctxClass, configs) {
     this.audioContexts = [];
-    this.tones = [];
-    this.notes = nts.getNotes();
+    this.chords = [];
+    this.notes = Notes.getNotes();
     this.ctxClass = ctxClass;
 
     for (var i = 0; i < configs.length; i++) {
       const config = configs[i];
       const ctx = this.createContext(config.name);
       this.audioContexts.push(ctx);
-      this.tones.push(this.createTone(ctx.ctx, config.name, config.type, config.gain, config.pan));
+      this.chords.push(this.createChord(ctx.ctx, config.name, config.type, config.gain, config.pan, config.chordNotes));
     }
   }
 
   createContext(name) {
-    return new ctx(this.ctxClass, name);
+    return new Context(this.ctxClass, name);
   }
 
-  createTone(ctx, name, type, gain, pan) {
-    return new tone(ctx, name, type, gain, pan, this.notes);
+  createChord(ctx, name, type, gain, pan, chordNotes) {
+    return new Chord(ctx, name, type, gain, pan, chordNotes, this.notes);
   }
 }
 
