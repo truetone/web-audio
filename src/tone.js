@@ -23,10 +23,10 @@ class Tone {
     this.oscillator.connect(this.gain);
 
     // connect the gain node to the panner
-    this.gain.connect(this.panner);
+    this.gain.gain.connect(this.panner);
 
     // connect the panner to the destination
-    this.panner.connect(this.destination);
+    this.panner.panner.connect(this.destination);
   }
 
   disconnect() {
