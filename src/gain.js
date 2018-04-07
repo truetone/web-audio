@@ -1,9 +1,14 @@
 class Gain {
-  constructor(contextObject, value) {
+  constructor(ctx, name, value) {
     console.log("Setting gain value to ", value);
-    this.gain = contextObject.createGain();
-    this.gain.gain.value = value;
+    this.name = name;
+    this.gain = ctx.createGain();
+    this.set(value);
     return this.gain;
+  }
+
+  set(value) {
+    this.gain.gain.value = value;
   }
 
   change(value) {
