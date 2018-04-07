@@ -9,7 +9,8 @@ class Chord {
 
     chordNotes.forEach((note) => {
       console.log("Creating new tone for note: ", note);
-      const t = new tone(ctx, self.name, toneType, gainValue, panValue, notes);
+      const name = self.name + "." + toneType + "." + note;
+      const t = new tone(ctx, name, toneType, gainValue, panValue, notes);
       t.playNote(note);
       self.tones.push(t);
     });
