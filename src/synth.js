@@ -2,17 +2,12 @@ const Notes = require("./notes");
 const Context = require("./context");
 const Chord = require("./chord");
 
-// tones consist of:
-// * an audio context
-//   * context.destination
-// * a gain node
-// * a panner node
-// * a Tone object
-//   * context
-//   * type
-//   * gain
-//   * pan
-//   * note(s)
+/*
+ * Synth should be a base class
+ *
+ * Extend it to ChordSynth for this implementation
+ * Create a MelodySynth implementation that plays single notes are a defined interval
+ */
 class Synth {
   constructor(ctxClass, configs) {
     this.audioContexts = [];
