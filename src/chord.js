@@ -8,7 +8,7 @@ class Chord {
 
         pan.pan.value = panValue;
 
-        Array.prototype.forEach.call(chordNotes, function(note) {
+        chordNotes.forEach((note) => {
             console.log("Creating new tone for note: ", note);
             const t = new tone(ctx, toneType, gain, pan, notes);
             t.playNote(note);
@@ -20,8 +20,8 @@ class Chord {
     connect() {
         const self = this;
         this.connected = true;
-        Array.prototype.forEach.call(self.tones, function(t) {
-            console.log("Connecting tone: ", t);
+        self.tones.forEach((t) => {
+            console.log("Connecting tone: ", t.name);
             t.connect();
         });
     }
@@ -29,8 +29,8 @@ class Chord {
     disconnect() {
         const self = this;
         this.connected = false;
-        Array.prototype.forEach.call(self.tones, function(t) {
-            console.log("Disconnecting tone: ", t);
+        self.tones.forEach((t) => {
+            console.log("Disconnecting tone: ", t.name);
             t.disconnect();
         });
     }
