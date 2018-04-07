@@ -4,7 +4,6 @@ class Gain {
     this.name = name + ".Gain";
     this.gain = ctx.createGain();
     this.set(value);
-    return this.gain;
   }
 
   set(value) {
