@@ -13,14 +13,14 @@ const synthConfigs = [
     type: "sine",
     gain: .1,
     pan: -1,
-    note: "C4"
+    chordNotes: ["C4"]
   },
   {
     name: "sine 2",
     type: "sine",
     gain: .1,
     pan: 1,
-    note: "C4"
+    chordNotes: ["C4"]
   }
 ];
 
@@ -31,13 +31,14 @@ beforeAll(() => {
   mockCreateOscillator = jest.fn();
   mockGain = jest.fn();
   mockCreateGain.mockReturnValue({
-      gain: {gain: 0},
-      connect: jest.fn()}
+    gain: {gain: 0},
+    connect: jest.fn()}
   );
   mockCreateOscillator.mockReturnValue({
-      gain: null,
-      start: jest.fn()}
-  );
+    gain: null,
+    start: jest.fn(),
+    frequency: {value: 0}
+  });
   mockGainConnect = jest.fn();
   mockCreatePanner.mockReturnValue({});
 
