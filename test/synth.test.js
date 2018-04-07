@@ -7,14 +7,16 @@ let mockCreateGain;
 let mockGainConnect;
 let mockCreateOscillator;
 let mockGain;
-const toneConfigs = [
+const synthConfigs = [
   {
+    contextName: "sine 1",
     type: "sine",
     gain: .1,
     pan: -1,
     note: "C4"
   },
   {
+    contextName: "sine 2",
     type: "sine",
     gain: .1,
     pan: 1,
@@ -70,22 +72,21 @@ beforeEach(() => {
 describe("Synth.constructor", () => {
 
   it("sets our Context object", () => {
-    const synth = new Synth(mockCtx, toneConfigs);
-    console.log(mockCtx.getMockImplementation());
-    expect(synth.audioContexts[0]).toBe(mockCtx.mock)
+    const synth = new Synth(mockCtx, synthConfigs);
+    expect(synth.audioContexts[0].name).toEqual("sine 1");
+    expect(synth.audioContexts[1].name).toEqual("sine 2");
   });
 
-  // xit("sets a context to for each config", () => {
-  //   const synth = new Synth(mockCtx, toneConfigs);
-  //   expect(synth.audioContexts.length).toEqual(2);
-  // });
+  it("sets a context for each config", () => {
+    const synth = new Synth(mockCtx, synthConfigs);
+    expect(synth.audioContexts.length).toEqual(2);
+  });
 
-  // describe("creating tones", () => {
-  //   xit("creates a tone for each config", () => {
-  //     // const mockCtx = jest.fn();
-  //     const synth = new Synth(mockCtx, toneConfigs);
-  //     expect(synth.tones.length).toEqual(2);
-  //     expect(synth.tones[0]).toBeInstanceOf(Tone)
-  //   });
-  // });
+  describe("creating tones", () => {
+    xit("creates a tone for each config", () => {
+      const synth = new Synth(mockCtx, synthConfigs);
+      expect(synth.tones.length).toEqual(2);
+      expect(synth.tones[0]).toBeInstanceOf(Tone)
+    });
+  });
 });

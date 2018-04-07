@@ -15,21 +15,21 @@ const tone = require("./tone");
 //   * pan
 //   * note(s)
 class Synth {
-  constructor(ctxClass, toneConfigs) {
+  constructor(ctxClass, configs) {
     this.audioContexts = [];
     this.tones = [];
     this.notes = nts.getNotes();
     this.ctxClass = ctxClass;
 
-    for (var i = 0; i < toneConfigs.length; i++) {
-      const ctx = this.createContext();
-      const config = toneConfigs[i];
+    for (var i = 0; i < configs.length; i++) {
+      const config = configs[i];
+      const ctx = this.createContext(config.contextName);
       this.audioContexts.push(ctx);
       this.tones.push(this.createTone(ctx.ctx, config.type, config.gain, config.pan));
     }
   }
 
-  createContext() {
+  createContext(name) {
     return new ctx(this.ctxClass, name);
   }
 
