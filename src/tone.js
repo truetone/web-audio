@@ -5,16 +5,14 @@ class Tone {
   constructor(ctx, type, gain_value, panner_value, notes) {
     this.gain = new gain(ctx, gain_value);
     this.panner = panner.create(ctx, panner_value);
-    this.gain.connect(this.panner);
-    this.ctx = ctx;
-    this.oscillator = this.ctx.createOscillator();
-    this.oscillator.type = type;
-    this.oscillator.start();
-    this.defaultFrequency = 261.33;
-    this.lowestFrequency = 16.35;
+    this.destination = ctx.destination;
+    this.oscillator = this.startOscillator(ctx, type);
+    // TODO set up Notes class to know what these are
+    // this.defaultFrequency = 261.33;
+    // this.lowestFrequency = 16.35;
+    // this.highestFrequency = 4978.03;
     this.notes = notes;
     this.connected = false;
-    this.melodyIndex;
   }
 
   connect() {
@@ -27,7 +25,7 @@ class Tone {
     this.gain.connect(this.panner);
 
     // connect the panner to the destination
-    this.panner.connect(this.ctx.destination);
+    this.panner.connect(this.destination);
   }
 
   disconnect() {
@@ -50,6 +48,13 @@ class Tone {
     } else {
       this.connect();
     }
+  }
+
+  startOscillator(ctx, type) {
+    const oscillator = ctx.createOscillator();
+    oscillator.type = type;
+    oscillator.start();
+    return oscillator;
   }
 
 }
