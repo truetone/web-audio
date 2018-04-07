@@ -2,7 +2,8 @@ const gain = require("./gain");
 const panner = require("./panner");
 
 class Tone {
-  constructor(ctx, type, gain_value, panner_value, notes) {
+  constructor(ctx, name, type, gain_value, panner_value, notes) {
+    this.name = name + " Tone";
     this.gain = new gain(ctx, gain_value);
     this.panner = panner.create(ctx, panner_value);
     this.destination = ctx.destination;

@@ -23,9 +23,9 @@ class Synth {
 
     for (var i = 0; i < configs.length; i++) {
       const config = configs[i];
-      const ctx = this.createContext(config.contextName);
+      const ctx = this.createContext(config.name);
       this.audioContexts.push(ctx);
-      this.tones.push(this.createTone(ctx.ctx, config.type, config.gain, config.pan));
+      this.tones.push(this.createTone(ctx.ctx, config.name, config.type, config.gain, config.pan));
     }
   }
 
@@ -33,8 +33,8 @@ class Synth {
     return new ctx(this.ctxClass, name);
   }
 
-  createTone(ctx, type, gain, pan) {
-    return new tone(ctx, type, gain, pan, this.notes);
+  createTone(ctx, name, type, gain, pan) {
+    return new tone(ctx, name, type, gain, pan, this.notes);
   }
 }
 

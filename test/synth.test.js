@@ -9,14 +9,14 @@ let mockCreateOscillator;
 let mockGain;
 const synthConfigs = [
   {
-    contextName: "sine 1",
+    name: "sine 1",
     type: "sine",
     gain: .1,
     pan: -1,
     note: "C4"
   },
   {
-    contextName: "sine 2",
+    name: "sine 2",
     type: "sine",
     gain: .1,
     pan: 1,
