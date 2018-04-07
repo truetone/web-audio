@@ -3,8 +3,8 @@ const panner = require("./panner");
 
 class Tone {
   constructor(ctx, name, type, gain_value, panner_value, notes) {
-    this.name = name + " Tone";
-    this.gain = new gain(ctx, gain_value);
+    this.name = name + ".Tone";
+    this.gain = new gain(ctx, this.name, gain_value);
     this.panner = panner.create(ctx, panner_value);
     this.destination = ctx.destination;
     this.oscillator = this.startOscillator(ctx, type);
