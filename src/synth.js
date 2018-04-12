@@ -15,12 +15,11 @@ class Synth {
     this.notes = Notes.getNotes();
     this.ctxClass = ctxClass;
 
-    for (var i = 0; i < configs.length; i++) {
-      const config = configs[i];
+    configs.forEach((config) => {
       const ctx = this.createContext(config.name);
       this.audioContexts.push(ctx);
       this.chords.push(this.createChord(ctx.ctx, config.name, config.type, config.gain, config.pan, config.chordNotes));
-    }
+    });
   }
 
   createContext(name) {

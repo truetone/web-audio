@@ -3,6 +3,7 @@ const Context = require("./context");
 
 class Melody {
   constructor(ctxClass, config, melody, interval) {
+    this.connected = false;
     this.notes = Notes.getNotes();
     this.ctxClass = ctxClass;
     this.melody = melody;
@@ -23,15 +24,34 @@ class Melody {
   }
 
   connect() {
+    this.connected = true;
     this.tones.forEach((t) => {
       t.connect();
     });
   }
 
   disconnect() {
+    this.connected = false;
     this.tones.forEach((t) => {
       t.disconnect();
     });
+  }
+
+  play() {
+    if (!this.connected) {
+      this.connect();
+    }
+
+    this.tones.forEach((tone, idx) => {
+      tone.playNote(this.melody[idx]);
+      await this.sleep(this.interval);
+    });
+    // recurse
+    this.play();
+  }
+
+  async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
 
