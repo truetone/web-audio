@@ -38,21 +38,26 @@ class Melody {
   }
 
   play() {
+    const self = this;
+    const interval = this.interval;
+    const melody = this.melody;
+
     if (!this.connected) {
       this.connect();
     }
 
     this.tones.forEach((tone, idx) => {
-      tone.playNote(this.melody[idx]);
-      await this.sleep(this.interval);
+      tone.playNote(melody[idx]);
+      self.sleep(interval);
     });
     // recurse
     this.play();
   }
 
-  async function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  static sleep(ms) {
+    const start = new Date().getTime();
+    while (new Date().getTime() < start + ms);
   }
 }
 
-module.exports Melody;
+module.exports = Melody;
