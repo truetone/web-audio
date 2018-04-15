@@ -3,31 +3,58 @@ const Context = require("./context");
 const Synth = require("./synth");
 
 class Melody extends Synth {
-  constructor(ctxClass, config, melody, interval) {
-    super(ctxClass, config, melody, interval);
-    this.melody = melody;
+  constructor(ctxClass, configs, interval) {
+    super(ctxClass, configs);
+    this.interval = interval;
+    this.tones = this.getTones();
+    this.stopped = false;
   }
 
-  play() {
-    const self = this;
-    const interval = this.interval;
-    const melody = this.melody;
+  * play() {
+    this.playTones();
+    yield;
 
-    if (!this.connected) {
-      this.connect();
-    }
-
-    this.tones.forEach((tone, idx) => {
-      tone.playNote(melody[idx]);
-      self.sleep(interval);
-    });
     // recurse
-    this.play();
+    if (!this.stopped) {
+      this.play();
+    }
   }
 
-  static sleep(ms) {
+  * playTones() {
+    const interval = this.interval;
+    let idx = 0;
+
+    for (let tone of this.tones) {
+      if (this.stopped) {
+        break;
+      }
+      tone.playNote(this.tones[idx]);
+      yield;
+      idx += 1;
+      this.sleep(interval);
+    };
+    yield;
+  }
+
+  stop() {
+    this.stopped = true;
+  }
+
+  sleep(ms) {
     const start = new Date().getTime();
     while (new Date().getTime() < start + ms);
+  }
+
+  getTones() {
+    const tones = [];
+
+    this.chords.forEach((chord, idx) => {
+      chord.tones.forEach((tone) => {
+        tones.push(tone);
+      });
+    });
+
+    return tones;
   }
 }
 
