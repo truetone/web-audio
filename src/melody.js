@@ -1,40 +1,11 @@
 const Notes = require("./notes");
 const Context = require("./context");
+const Synth = require("./synth");
 
-class Melody {
+class Melody extends Synth {
   constructor(ctxClass, config, melody, interval) {
-    this.connected = false;
-    this.notes = Notes.getNotes();
-    this.ctxClass = ctxClass;
+    super(ctxClass, config, melody, interval);
     this.melody = melody;
-    this.interval = interval;
-    this.tones = [];
-
-    const ctx = this.createContext(config.name);
-    const self = this;
-
-    melody.forEach(() => {
-      this.tones.push(this.createTone(ctx.ctx, this.name, config.type, config.gain, config.pan, self.notes));
-    });
-  }
-
-  // this is common w/ Synth and could go to a baseSynth class
-  createContext(name) {
-    return new Context(this.ctxClass, name);
-  }
-
-  connect() {
-    this.connected = true;
-    this.tones.forEach((t) => {
-      t.connect();
-    });
-  }
-
-  disconnect() {
-    this.connected = false;
-    this.tones.forEach((t) => {
-      t.disconnect();
-    });
   }
 
   play() {
