@@ -18,10 +18,16 @@ beforeEach(() => {
 
 describe("Ui.constructor", () => {
   it("should bind eventHandler to startButton.onclick", () => {
-    const mock_event = jest.fn();
-    const ui = new Ui(modals, start_button, mock_event);
+    const mock_synth = jest.fn();
+    const ui = new Ui(modals, start_button, mock_synth);
     expect(ui.startButton).toBeDefined();
     expect(ui.startButton.onclick).toBeDefined();
+  });
+
+  it("should attach synth to startButton", () => {
+    const mock_synth = jest.fn();
+    const ui = new Ui(modals, start_button, mock_synth);
+    expect(ui.startButton.synth).toBeDefined();
   });
 
   it("should add a 'touchstart' event listener with eventHandler as the callback", () => {
