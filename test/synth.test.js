@@ -1,6 +1,6 @@
 const Synth = require("../src/synth");
 const Context = require("../src/context");
-const Tone = require("../src/tone");
+const Chord = require("../src/chord");
 let mockCtx;
 let mockCreatePanner;
 let mockCreateGain;
@@ -82,11 +82,11 @@ describe("Synth.constructor", () => {
     expect(synth.audioContexts.length).toEqual(2);
   });
 
-  describe("creating tones", () => {
-    xit("creates a tone for each config", () => {
+  describe("creating chords", () => {
+    it("creates a chord for each config", () => {
       const synth = new Synth(mockCtx, synthConfigs);
-      expect(synth.tones.length).toEqual(2);
-      expect(synth.tones[0]).toBeInstanceOf(Tone)
+      expect(synth.chords.length).toEqual(2);
+      expect(synth.chords[0]).toBeInstanceOf(Chord)
     });
   });
 });
