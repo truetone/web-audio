@@ -8,7 +8,6 @@ class Ui {
     startButton.addEventListener("touchstart", this.eventHandler);
     this.startButton = startButton;
     this.modals = modals;
-    // this.synth = synth;
   }
 
   eventHandler(event) {
