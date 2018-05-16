@@ -1,4 +1,4 @@
-const tone = require("./tone.js");
+const tone = require("./tone");
 
 class Chord {
   constructor(ctx, name, toneType, gainValue, panValue, chordNotes, notes) {

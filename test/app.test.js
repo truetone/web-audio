@@ -1,5 +1,6 @@
-const App = require("../src/app.js");
-const Ui = require("../src/ui.js");
+const App = require("../src/app");
+const Ui = require("../src/ui");
+const Synth = require("../src/synth");
 
 jest.mock('../src/synth.js');
 jest.mock('../src/ui.js');
