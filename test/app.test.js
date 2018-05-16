@@ -8,6 +8,7 @@ jest.mock('../src/ui.js');
 beforeEach(() => {
   // Clear all instances and calls to constructor and all methods:
   Ui.mockClear();
+  Synth.mockClear();
 
   const addEventListener = jest.fn();
   const getElementByIdReturnValue = {
@@ -42,5 +43,10 @@ describe("App.constructor", () => {
 
     expect(Ui).toHaveBeenCalledTimes(1);
     expect(Ui).toHaveBeenCalledWith(expected_modals, expected_start_button, app.synth);
+  });
+
+  it("should call the Synth.constructor", () => {
+    const app = new App(document);
+    expect(Synth).toHaveBeenCalledTimes(1);
   });
 });
