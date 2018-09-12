@@ -140,6 +140,18 @@ class Synth {
   createChord(ctx, name, type, gain, pan, chordNotes) {
     return new Chord(ctx, name, type, gain, pan, chordNotes, this.notes);
   }
+
+  start() {
+    this.chords.forEach((chord) => {
+      chord.connect();
+    });
+  }
+
+  stop() {
+    this.chords.forEach((chord) => {
+      chord.disconnect();
+    });
+  }
 }
 
 module.exports = Synth;
@@ -437,21 +449,17 @@ module.exports = Panner;
 
 class Ui {
   constructor(modals, startButton, synth) {
-    // attach the synth to the target element because "this" loses it's context
-    // in the eventHandler
-    startButton.synth = synth;
-    startButton.modals = modals;
-    startButton.onclick = this.eventHandler;
-    startButton.addEventListener("touchstart", this.eventHandler);
-    this.startButton = startButton;
+    startButton.onclick = () => { this.eventHandler() };
+    // startButton.addEventListener("touchstart", this.eventHandler);
     this.modals = modals;
+    this.synth = synth;
   }
 
   eventHandler(event) {
-    const targetElem = event.target;
-    targetElem.synth.start();
+    console.log(this);
+    this.synth.start();
     // TODO iterate over these instead expecting one
-    targetElem.modals[0].classList.remove("active");
+    this.modals[0].classList.remove("active");
   };
 }
 

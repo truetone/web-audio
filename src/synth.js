@@ -23,6 +23,18 @@ class Synth {
   createChord(ctx, name, type, gain, pan, chordNotes) {
     return new Chord(ctx, name, type, gain, pan, chordNotes, this.notes);
   }
+
+  start() {
+    this.chords.forEach((chord) => {
+      chord.connect();
+    });
+  }
+
+  stop() {
+    this.chords.forEach((chord) => {
+      chord.disconnect();
+    });
+  }
 }
 
 module.exports = Synth;
