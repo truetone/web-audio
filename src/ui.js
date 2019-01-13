@@ -1,7 +1,9 @@
 class Ui {
   constructor(modals, startButton, synth) {
-    startButton.onclick = () => { this.eventHandler() };
-    // startButton.addEventListener("touchstart", this.eventHandler);
+    this.startButton = startButton;
+    this.startButton.onclick = () => { this.eventHandler() };
+    this.startButton.addEventListener("touchstart", this.eventHandler);
+    this.startButton.synth = synth;
     this.modals = modals;
     this.synth = synth;
   }

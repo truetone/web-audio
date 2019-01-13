@@ -67,17 +67,25 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const App = __webpack_require__(1);
-
-const app = new App(doc = window.document);
+__webpack_require__(1);
+(function webpackMissingModule() { throw new Error("Cannot find module \"/Users/thoma127/Projects/web-audio/test/\""); }());
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Synth = __webpack_require__(2);
-const Ui = __webpack_require__(9);
+const App = __webpack_require__(2);
+
+const app = new App(doc = window.document);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Synth = __webpack_require__(3);
+const Ui = __webpack_require__(10);
 
 const configs = [
   {
@@ -112,12 +120,12 @@ module.exports = App
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Notes = __webpack_require__(3);
-const Context = __webpack_require__(4);
-const Chord = __webpack_require__(5);
+const Notes = __webpack_require__(4);
+const Context = __webpack_require__(5);
+const Chord = __webpack_require__(6);
 
 class Synth {
   constructor(ctxClass, configs) {
@@ -158,7 +166,7 @@ module.exports = Synth;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 class Notes {
@@ -272,7 +280,7 @@ module.exports = Notes
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 class Context {
@@ -286,10 +294,10 @@ module.exports = Context;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const tone = __webpack_require__(6);
+const tone = __webpack_require__(7);
 
 class Chord {
   constructor(ctx, name, toneType, gainValue, panValue, chordNotes, notes) {
@@ -328,11 +336,11 @@ module.exports = Chord;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const gain = __webpack_require__(7);
-const panner = __webpack_require__(8);
+const gain = __webpack_require__(8);
+const panner = __webpack_require__(9);
 
 class Tone {
   constructor(ctx, name, type, gain_value, panner_value, notes) {
@@ -397,13 +405,13 @@ module.exports = Tone
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 class Gain {
   constructor(ctx, name, value) {
     this.name = name + ".Gain";
-    this.gain = ctx.createGain();
+    this.gain = ctx.ctx.createGain();
     this.set(value);
   }
 
@@ -421,13 +429,13 @@ module.exports = Gain;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 class Panner {
   constructor(ctx, name, value) {
     this.name = name + ".Panner";
-    this.panner = ctx.createPanner();
+    this.panner = ctx.ctx.createPanner();
     this.set(value);
   }
 
@@ -444,7 +452,7 @@ module.exports = Panner;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 class Ui {
